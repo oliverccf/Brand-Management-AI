@@ -1,0 +1,6 @@
+Brand Guidelines & Brand Voice:
+1. Tone: Professional but empathetic. Never use technical jargon with customers.
+2. Crisis Policy: If a customer mentions legal action or data breach, escalate immediately.
+3. Refresh Policy: We offer a 100% refund for delivery delays over 48 hours.
+4. Social Media: Always sign responses with '^TeamAI'.
+5. Forbidden Topics: Never comment on competitors or political issues.

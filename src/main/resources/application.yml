@@ -1,0 +1,154 @@
+spring:
+  application:
+    name: social-media-brand-analyzer
+  main:
+    allow-bean-definition-overriding: true
+  
+  # Database Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/brand_analyzer
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        use_sql_comments: true
+  
+  # Redis Configuration
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 2
+  
+  # Kafka Configuration
+  kafka:
+    enabled: false  # Set to true when Kafka is available
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: brand-analyzer-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    topics:
+      social-messages: social-media-messages
+      analysis-results: analysis-results
+      alerts: brand-alerts
+
+  # AI Configuration
+  ai:
+    # OpenAI Configuration (Disabled for Local/OpenSource)
+    # openai:
+    #   api-key: ${OPENAI_API_KEY:disabled}
+    #   chat:
+    #     options:
+    #       model: gpt-4o-mini
+    #       temperature: 0.3
+    #   embedding:
+    #     options:
+    #       model: text-embedding-3-small
+    
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: llama3.2:latest
+        options:
+          temperature: 0.3
+          num-predict: 1024
+          num-ctx: 4096
+      embedding: 
+        model: all-minilm:latest
+    
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 384
+        initialize-schema: true
+      
+      chroma:
+        client:
+          host: localhost
+          port: 8000
+
+# Server Configuration
+server:
+  port: 8080
+  compression:
+    enabled: true
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# Management & Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.nocode.ai: DEBUG
+    org.springframework.ai: DEBUG
+    org.springframework.kafka: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Application Specific Configuration
+app:
+  analysis:
+    batch-size: 100
+    max-retries: 3
+    retry-delay-ms: 1000
+  
+  social-media:
+    platforms:
+      - TWITTER
+      - INSTAGRAM
+      - FACEBOOK
+      - LINKEDIN
+      - RECLAME_AQUI
+      - CONSUMIDOR_GOV
+    
+    rate-limits:
+      requests-per-minute: 100
+      requests-per-hour: 1000
+  
+  cache:
+    ttl-minutes: 60
+    max-entries: 10000
