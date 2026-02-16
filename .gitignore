@@ -43,3 +43,6 @@ out/
 
 ### Docker ###
 docker-compose.override.yml
+
+### Marketing ###
+LINKEDIN_POST.md
