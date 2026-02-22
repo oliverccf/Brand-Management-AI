@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.5.1">
   <diagram name="Página-1" id="3zUDbYdQT89SwBD84I3N">
-    <mxGraphModel dx="1426" dy="912" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1783" dy="1140" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -228,7 +228,7 @@
             <mxPoint x="694" y="520" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="7JAkinn_x6eDBn27u4Z3-16" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="Back office" vertex="1">
+        <mxCell id="7JAkinn_x6eDBn27u4Z3-16" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="Backoffice" vertex="1">
           <mxGeometry height="60" width="750" x="50" y="840" as="geometry" />
         </mxCell>
         <mxCell id="7JAkinn_x6eDBn27u4Z3-17" edge="1" parent="1" source="7JAkinn_x6eDBn27u4Z3-16" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.096;exitY=-0.008;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
